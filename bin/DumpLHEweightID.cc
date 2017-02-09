@@ -35,6 +35,12 @@ main( int argc, char* argv[] )
     return 0;
   }
 
+  if( !args.count("inputfile") ){
+    cerr << "Error! Input miniAOD file required!" << endl;
+    cerr << desc << endl;
+    return 1;
+  }
+
   fwlite::Run run( TFile::Open( args["inputfile"].as<string>().c_str() ) );
   fwlite::Handle<LHERunInfoProduct> lheinfo;
   lheinfo.getByLabel( run, "externalLHEProducer" );
